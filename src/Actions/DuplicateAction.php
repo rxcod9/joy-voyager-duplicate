@@ -16,7 +16,7 @@ class DuplicateAction extends AbstractAction
 
     public function getIcon()
     {
-        return 'voyager-duplicate';
+        return 'voyager-duplicate fa-solid fa-clone';
     }
 
     public function getPolicy()
@@ -49,25 +49,6 @@ class DuplicateAction extends AbstractAction
                 $this->dataType->slug,
                 config('joy-voyager-duplicate.not_allowed_slugs', [])
             );
-    }
-
-    public function massAction($ids, $comingFrom)
-    {
-        // GET THE SLUG, ex. 'posts', 'pages', etc.
-        $slug = $this->getSlug(request());
-
-        // GET THE DataType based on the slug
-        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
-
-        // Check permission
-        Gate::authorize('browse', app($dataType->model_name));
-
-        // Your macgic here
-
-        return redirect()->back()->with([
-            'message'    => __('joy-voyager-duplicate::generic.successfully_duplicateed') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
-            'alert-type' => 'success',
-        ]);
     }
 
     protected function getSlug(Request $request)
