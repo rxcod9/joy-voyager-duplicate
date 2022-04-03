@@ -16,7 +16,7 @@ class DuplicateAction extends AbstractAction
 
     public function getIcon()
     {
-        return 'voyager-duplicate fa-solid fa-clone';
+        return 'fa-solid fa-clone';
     }
 
     public function getPolicy()
