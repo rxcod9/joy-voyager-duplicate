@@ -28,8 +28,7 @@ class DuplicateAction extends AbstractAction
     {
         return [
             'id'     => 'duplicate_btn',
-            'class'  => 'btn btn-primary',
-            'target' => '_blank',
+            'class'  => 'btn btn-sm btn-primary pull-right',
         ];
     }
 
