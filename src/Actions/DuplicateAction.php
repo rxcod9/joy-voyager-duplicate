@@ -25,8 +25,8 @@ class DuplicateAction extends AbstractAction
     public function getAttributes()
     {
         return [
-            'id'     => 'duplicate_btn',
-            'class'  => 'btn btn-sm btn-primary pull-right',
+            'id'    => 'duplicate_btn',
+            'class' => 'btn btn-sm btn-primary pull-right',
         ];
     }
 
