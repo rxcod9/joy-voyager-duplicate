@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Joy\VoyagerReplaceKeyword;
+namespace Joy\VoyagerDuplicate;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Joy\VoyagerReplaceKeyword\Console\Commands\ReplaceKeyword;
+use Joy\VoyagerDuplicate\Console\Commands\Duplicate;
 use TCG\Voyager\Facades\Voyager;
 
 /**
- * Class VoyagerReplaceKeywordServiceProvider
+ * Class VoyagerDuplicateServiceProvider
  *
  * @category  Package
- * @package   JoyVoyagerReplaceKeyword
+ * @package   JoyVoyagerDuplicate
  * @author    Ramakant Gangwar <gangwar.ramakant@gmail.com>
  * @copyright 2021 Copyright (c) Ramakant Gangwar (https://github.com/rxcod9)
- * @license   http://github.com/rxcod9/joy-voyager-replace-keyword/blob/main/LICENSE New BSD License
- * @link      https://github.com/rxcod9/joy-voyager-replace-keyword
+ * @license   http://github.com/rxcod9/joy-voyager-duplicate/blob/main/LICENSE New BSD License
+ * @link      https://github.com/rxcod9/joy-voyager-duplicate
  */
-class VoyagerReplaceKeywordServiceProvider extends ServiceProvider
+class VoyagerDuplicateServiceProvider extends ServiceProvider
 {
     /**
      * Boot
@@ -28,11 +28,11 @@ class VoyagerReplaceKeywordServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Voyager::addAction(\Joy\VoyagerReplaceKeyword\Actions\ReplaceKeywordAction::class);
+        Voyager::addAction(\Joy\VoyagerDuplicate\Actions\DuplicateAction::class);
 
         $this->registerPublishables();
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'joy-voyager-replace-keyword');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'joy-voyager-duplicate');
 
         $this->mapApiRoutes();
 
@@ -40,7 +40,7 @@ class VoyagerReplaceKeywordServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'joy-voyager-replace-keyword');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'joy-voyager-duplicate');
     }
 
     /**
@@ -61,7 +61,7 @@ class VoyagerReplaceKeywordServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes(): void
     {
-        Route::prefix(config('joy-voyager-replace-keyword.route_prefix', 'api'))
+        Route::prefix(config('joy-voyager-duplicate.route_prefix', 'api'))
             ->middleware('api')
             ->group(__DIR__ . '/../routes/api.php');
     }
@@ -73,7 +73,7 @@ class VoyagerReplaceKeywordServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/voyager-replace-keyword.php', 'joy-voyager-replace-keyword');
+        $this->mergeConfigFrom(__DIR__ . '/../config/voyager-duplicate.php', 'joy-voyager-duplicate');
 
         if ($this->app->runningInConsole()) {
             $this->registerCommands();
@@ -88,26 +88,26 @@ class VoyagerReplaceKeywordServiceProvider extends ServiceProvider
     protected function registerPublishables(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/voyager-replace-keyword.php' => config_path('joy-voyager-replace-keyword.php'),
+            __DIR__ . '/../config/voyager-duplicate.php' => config_path('joy-voyager-duplicate.php'),
         ], 'config');
 
         $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/joy-voyager-replace-keyword'),
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/joy-voyager-duplicate'),
         ], 'views');
 
         $this->publishes([
-            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/joy-voyager-replace-keyword'),
+            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/joy-voyager-duplicate'),
         ], 'translations');
     }
 
     protected function registerCommands(): void
     {
-        $this->app->singleton('command.joy.voyager.replace-keyword', function () {
-            return new ReplaceKeyword();
+        $this->app->singleton('command.joy.voyager.duplicate', function () {
+            return new Duplicate();
         });
 
         $this->commands([
-            'command.joy.voyager.replace-keyword',
+            'command.joy.voyager.duplicate',
         ]);
     }
 }

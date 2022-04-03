@@ -1,22 +1,22 @@
 <?php
 
-namespace Joy\VoyagerReplaceKeyword\Actions;
+namespace Joy\VoyagerDuplicate\Actions;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use TCG\Voyager\Actions\AbstractAction;
 use TCG\Voyager\Facades\Voyager;
 
-class ReplaceKeywordAction extends AbstractAction
+class DuplicateAction extends AbstractAction
 {
     public function getTitle()
     {
-        return __('joy-voyager-replace-keyword::generic.replace_keyword');
+        return __('joy-voyager-duplicate::generic.duplicate');
     }
 
     public function getIcon()
     {
-        return 'voyager-replace-keyword';
+        return 'voyager-duplicate';
     }
 
     public function getPolicy()
@@ -27,7 +27,7 @@ class ReplaceKeywordAction extends AbstractAction
     public function getAttributes()
     {
         return [
-            'id'     => 'replace_keyword_btn',
+            'id'     => 'duplicate_btn',
             'class'  => 'btn btn-primary',
             'target' => '_blank',
         ];
@@ -40,14 +40,14 @@ class ReplaceKeywordAction extends AbstractAction
 
     public function shouldActionDisplayOnDataType()
     {
-        return config('joy-voyager-replace-keyword.enabled', true) !== false
+        return config('joy-voyager-duplicate.enabled', true) !== false
             && isInPatterns(
                 $this->dataType->slug,
-                config('joy-voyager-replace-keyword.allowed_slugs', ['*'])
+                config('joy-voyager-duplicate.allowed_slugs', ['*'])
             )
             && !isInPatterns(
                 $this->dataType->slug,
-                config('joy-voyager-replace-keyword.not_allowed_slugs', [])
+                config('joy-voyager-duplicate.not_allowed_slugs', [])
             );
     }
 
@@ -65,7 +65,7 @@ class ReplaceKeywordAction extends AbstractAction
         // Your macgic here
 
         return redirect()->back()->with([
-            'message'    => __('joy-voyager-replace-keyword::generic.successfully_replace_keyworded') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
+            'message'    => __('joy-voyager-duplicate::generic.successfully_duplicateed') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
             'alert-type' => 'success',
         ]);
     }

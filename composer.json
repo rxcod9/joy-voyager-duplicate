@@ -1,16 +1,16 @@
 {
-    "name": "joy/voyager-replace-keyword",
-    "description": "This Laravel/Voyager module adds VoyagerReplaceKeyword support to Voyager.",
+    "name": "joy/voyager-duplicate",
+    "description": "This Laravel/Voyager module adds VoyagerDuplicate support to Voyager.",
     "keywords": [
         "joy",
-        "replace-keyword",
-        "voyager-replace-keyword",
-        "joy-voyager-replace-keyword",
+        "duplicate",
+        "voyager-duplicate",
+        "joy-voyager-duplicate",
         "cms",
         "voyager",
         "laravel"
     ],
-    "homepage": "https://github.com/rxcod9/joy-voyager-replace-keyword",
+    "homepage": "https://github.com/rxcod9/joy-voyager-duplicate",
     "license": "MIT",
     "authors": [{
         "name": "Ramakant Gangwar",
@@ -35,7 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Joy\\VoyagerReplaceKeyword\\": "src"
+            "Joy\\VoyagerDuplicate\\": "src"
         },
         "files": [
             "src/helper.php"
@@ -47,13 +47,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Joy\\VoyagerReplaceKeyword\\Tests\\": "tests"
+            "Joy\\VoyagerDuplicate\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Joy\\VoyagerReplaceKeyword\\VoyagerReplaceKeywordServiceProvider"
+                "Joy\\VoyagerDuplicate\\VoyagerDuplicateServiceProvider"
             ]
         }
     },

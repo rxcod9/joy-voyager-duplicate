@@ -1,8 +1,8 @@
 <?php
 
-namespace Joy\VoyagerReplaceKeyword\ReplaceKeywords;
+namespace Joy\VoyagerDuplicate\Duplicates;
 
-class ReplaceKeyword
+class Duplicate
 {
     /**
      * Create new instance

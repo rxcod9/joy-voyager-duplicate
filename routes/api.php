@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | This file is where you may override any of the routes that are included
-| with VoyagerReplaceKeyword.
+| with VoyagerDuplicate.
 |
 */
 
-Route::group(['as' => 'joy-voyager-replace-keyword.'], function () {
+Route::group(['as' => 'joy-voyager-duplicate.'], function () {
     // event(new Routing()); @deprecated
 
-    $namespacePrefix = '\\' . config('joy-voyager-replace-keyword.controllers.namespace') . '\\';
+    $namespacePrefix = '\\' . config('joy-voyager-duplicate.controllers.namespace') . '\\';
 
     // event(new RoutingAfter()); @deprecated
 });

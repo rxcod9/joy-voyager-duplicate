@@ -1,11 +1,11 @@
 <?php
 
-namespace Joy\VoyagerReplaceKeyword\Http\Controllers;
+namespace Joy\VoyagerDuplicate\Http\Controllers;
 
-use Joy\VoyagerReplaceKeyword\Http\Traits\ReplaceKeywordAction;
+use Joy\VoyagerDuplicate\Http\Traits\DuplicateAction;
 use TCG\Voyager\Http\Controllers\VoyagerBaseController as TCGVoyagerBaseController;
 
 class VoyagerBaseController extends TCGVoyagerBaseController
 {
-    use ReplaceKeywordAction;
+    use DuplicateAction;
 }

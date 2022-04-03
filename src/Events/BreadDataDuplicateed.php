@@ -1,11 +1,11 @@
 <?php
 
-namespace Joy\VoyagerReplaceKeyword\Events;
+namespace Joy\VoyagerDuplicate\Events;
 
 use Illuminate\Queue\SerializesModels;
 use TCG\Voyager\Models\DataType;
 
-class BreadDataReplaceKeyworded
+class BreadDataDuplicateed
 {
     use SerializesModels;
 
@@ -19,6 +19,6 @@ class BreadDataReplaceKeyworded
 
         $this->data = $data;
 
-        // event(new BreadDataChanged($dataType, $data, 'ReplaceKeyworded'));
+        // event(new BreadDataChanged($dataType, $data, 'Duplicateed'));
     }
 }
