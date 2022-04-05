@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'successfully_duplicateed'   => 'Successfully Duplicateed',
+    'successfully_duplicated'   => 'Successfully Duplicated',
     'duplicate'   => 'Duplicate',
 ];

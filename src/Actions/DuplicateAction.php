@@ -25,14 +25,13 @@ class DuplicateAction extends AbstractAction
     public function getAttributes()
     {
         return [
-            'id'    => 'duplicate_btn',
-            'class' => 'btn btn-sm btn-primary pull-right',
+            'class' => 'btn btn-sm btn-primary pull-right duplicate',
         ];
     }
 
     public function getDefaultRoute()
     {
-        // return route('my.route');
+        return route('voyager.'.$this->dataType->slug.'.duplicate', $this->data->{$this->data->getKeyName()});
     }
 
     public function shouldActionDisplayOnDataType()

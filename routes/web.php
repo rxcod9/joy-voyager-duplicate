@@ -31,7 +31,8 @@ Route::group(['prefix' => config('joy-voyager-duplicate.admin_prefix', 'admin')]
 
             try {
                 foreach (Voyager::model('DataType')::all() as $dataType) {
-                    // Route::get($dataType->slug . '/duplicate', $breadController.'@duplicate')->name($dataType->slug.'.duplicate');
+                    Route::get($dataType->slug . '/{id}/duplicate', $breadController.'@duplicate')->name($dataType->slug.'.duplicate');
+                    Route::post($dataType->slug . '/{id}/duplicate', $breadController.'@storeDuplicate')->name($dataType->slug.'.store-duplicate');
                 }
             } catch (\InvalidArgumentException $e) {
                 throw new \InvalidArgumentException("Custom routes hasn't been configured because: ".$e->getMessage(), 1);
