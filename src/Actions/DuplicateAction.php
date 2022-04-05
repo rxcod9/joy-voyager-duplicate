@@ -31,7 +31,7 @@ class DuplicateAction extends AbstractAction
 
     public function getDefaultRoute()
     {
-        return route('voyager.'.$this->dataType->slug.'.duplicate', $this->data->{$this->data->getKeyName()});
+        return route('voyager.' . $this->dataType->slug . '.duplicate', $this->data->{$this->data->getKeyName()});
     }
 
     public function shouldActionDisplayOnDataType()
