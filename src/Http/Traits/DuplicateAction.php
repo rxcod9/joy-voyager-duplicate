@@ -2,19 +2,11 @@
 
 namespace Joy\VoyagerDuplicate\Http\Traits;
 
-use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use TCG\Voyager\Database\Schema\SchemaManager;
 use TCG\Voyager\Events\BreadDataAdded;
-use TCG\Voyager\Events\BreadDataDeleted;
-use TCG\Voyager\Events\BreadDataRestored;
-use TCG\Voyager\Events\BreadDataUpdated;
-use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Facades\Voyager;
-use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use TCG\Voyager\Models\DataType;
 
 trait DuplicateAction
@@ -45,7 +37,7 @@ trait DuplicateAction
             if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
                 $query = $query->withTrashed();
             }
-            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+            if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
                 $query = $query->{$dataType->scope}();
             }
             $dataTypeContent = call_user_func([$query, 'findOrFail'], $id);
@@ -100,7 +92,7 @@ trait DuplicateAction
 
         $model = app($dataType->model_name);
         $query = $model->query();
-        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
             $query = $query->{$dataType->scope}();
         }
         if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
@@ -136,7 +128,7 @@ trait DuplicateAction
         }
 
         return $redirect->with([
-            'message'    => __('joy-voyager-duplicate::generic.successfully_duplicated')." {$dataType->getTranslatedAttribute('display_name_singular')}",
+            'message'    => __('joy-voyager-duplicate::generic.successfully_duplicated') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
             'alert-type' => 'success',
         ]);
     }
@@ -144,10 +136,10 @@ trait DuplicateAction
     protected function resetPasswordFields($dataTypeContent, DataType $dataType, $bread_type = 'browse')
     {
         $reset_keys = [];
-        foreach ($dataType->{$bread_type.'Rows'} as $key => $row) {
+        foreach ($dataType->{$bread_type . 'Rows'} as $key => $row) {
             if ($row->type == 'password') {
-                    $passwordField = @$row->field;
-                    $dataTypeContent->{$passwordField} = null;
+                $passwordField                     = @$row->field;
+                $dataTypeContent->{$passwordField} = null;
             }
         }
     }
